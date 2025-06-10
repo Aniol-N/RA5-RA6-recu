@@ -291,7 +291,12 @@ class UserController
     {
         session_unset();
         session_destroy();
-        header("Location: ../View/login.php");
+        $redirect = isset($_POST['redirect']) ? $_POST['redirect'] : '../index.php';
+        if (strpos($redirect, '/') !== 0 && !filter_var($redirect, FILTER_VALIDATE_URL)) {
+            $redirect = '../index.php';
+        }
+
+        header("Location: " . $redirect);
         exit;
     }
 }

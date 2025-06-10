@@ -55,10 +55,10 @@ include "./Controller/UserController.php";
                     <h1 id="usr-name">Bienvenido, ' . $_SESSION['username'] . '!</h1>
                     <a href="./View/profile.php"><button class="user-action" id="prof-redirect">Perfil</button></a>
                     <a href="./View/update_password.php"><button class="user-action" id="passwd-redirect">Cambiar Contraseña</button></a>
-                    <!--placeholders-->
                     <a href="#"><button class="user-action" id="useraction2">Lorem ipsum</button></a>
-                    <!--placeholders-->
-                    <a href="./Controller/logout.php"><button class="user-action" id="logout">Cerrar sesión</button></a>';
+                    <form action="./Controller/UserController.php" method="POST" style="display: inline;">
+                        <button type="submit" name="logout" class="user-action" id="logout">Cerrar sesión</button>
+                    </form>';
                 } else {
                     echo '<h1 id="not-logged">No has iniciado sesión</h1>
                     <a href="./View/login.php"><button class="user-action" id="login">Login</button></a>';
