@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $user->read_filters();
     }
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     if (isset($_POST["delete"])) {
         $user = new EventController();
         echo "<p>Logout button is clicked.</p>";
@@ -59,6 +59,7 @@ class EventController
         $genre = trim($_POST['genre']);
         $synopsis = trim($_POST['synopsis']);
         $crew = trim($_POST['crew']);
+        $boxOffice = trim($_POST['boxOffice']);
         $eventDate = trim($_POST['eventDate']);
         $trailerVideo = trim($_POST['trailerVideo']);
 
@@ -79,8 +80,8 @@ class EventController
         }
 
         // Insertar nuevo evento
-        $createStmt = $this->conn->prepare("INSERT INTO events (title, genre, synopsis, crew, eventDate, trailerVideo) VALUES (?, ?, ?, ?, ?, ?)");
-        if (!$createStmt->execute([$title, $genre, $synopsis, $crew, $eventDate, $trailerVideo])) {
+        $createStmt = $this->conn->prepare("INSERT INTO events (title, genre, synopsis, crew, boxOffice, eventDate, trailerVideo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        if (!$createStmt->execute([$title, $genre, $synopsis, $crew, $boxOffice, $eventDate, $trailerVideo])) {
             $_SESSION["error"] = "Hubo un error en crear el evento, acude el equipo administrativo.";
             header("Location: ../View/event.php");
             exit;
@@ -94,14 +95,9 @@ class EventController
     public function readAll()
     {
         try {
-            echo "<!-- DEBUG: Ejecutando readAll() -->";
             $readStmt = $this->conn->prepare("SELECT * FROM events ORDER BY eventDate ASC");
             $readStmt->execute();
-
             $eventdata = $readStmt->fetchAll(PDO::FETCH_ASSOC);
-            echo "<!-- DEBUG: Consulta ejecutada, filas obtenidas: " . count($eventdata) . " -->";
-            echo "<!-- DEBUG: Datos obtenidos: " . print_r($eventdata, true) . " -->";
-
             return $eventdata;
         } catch (PDOException $e) {
             echo "<!-- DEBUG: Error en readAll(): " . $e->getMessage() . " -->";
@@ -150,13 +146,10 @@ class EventController
 
     public function getEventById($id)
     {
-        $_SESSION["debug"] = "Entered getEventById";
         try {
             $stmt = $this->conn->prepare("SELECT * FROM events WHERE id = ?");
             $stmt->execute([$id]);
-
             return $stmt->fetch(PDO::FETCH_ASSOC);
-            $_SESSION["debug"] = "Returned fetch.";
         } catch (PDOException $e) {
             $_SESSION["error"] = "Error al obtener el evento: " . $e->getMessage();
             return null;
@@ -170,6 +163,7 @@ class EventController
         $genre = trim($_POST['genre']);
         $synopsis = trim($_POST['synopsis']);
         $crew = trim($_POST['crew']);
+        $boxOffice = trim($_POST['boxOffice']);
         $eventDate = trim($_POST['eventDate']);
         $trailerVideo = trim($_POST['trailerVideo']);
 
@@ -179,14 +173,14 @@ class EventController
             exit;
         }
 
-        $updateStmt = $this->conn->prepare("UPDATE events SET title = ?, genre = ?, synopsis = ?, crew = ?, eventDate = ?, trailerVideo = ? WHERE id = ?");
-        if (!$updateStmt->execute([$newTitle, $genre, $synopsis, $crew, $eventDate, $trailerVideo, $_SESSION["id"]])) {
+        $updateStmt = $this->conn->prepare("UPDATE events SET title = ?, genre = ?, synopsis = ?, crew = ?, boxOffice = ?, eventDate = ?, trailerVideo = ? WHERE id = ?");
+        if (!$updateStmt->execute([$newTitle, $genre, $synopsis, $crew, $boxOffice, $eventDate, $trailerVideo, $_SESSION["id"]])) {
             $_SESSION["error"] = "Ha habido un error al actualizar el evento, contacte un administrador.";
             //    header("Location: ../View/event.php");
             exit;
         }
 
-        $readStmt = $this->conn->prepare("SELECT title, genre, synopsis, crew, eventDate, trailerVideo FROM events WHERE id = ?");
+        $readStmt = $this->conn->prepare("SELECT title, genre, synopsis, crew, boxOffice, eventDate, trailerVideo FROM events WHERE id = ?");
 
         if (!$readStmt->execute([$_SESSION["id"]])) {
             $_SESSION["error"] = "Error en la consulta";
@@ -206,10 +200,10 @@ class EventController
         $_SESSION["genre"] = $event["genre"];
         $_SESSION["synopsis"] = $event["synopsis"];
         $_SESSION["crew"] = $event["crew"];
+        $_SESSION["boxOffice"] = $boxOffice["boxOffice"];
         $_SESSION["eventDate"] = $event["eventDate"];
         $_SESSION["trailerVideo"] = $event["trailerVideo"];
         $_SESSION["success"] = "Evento actualizado correctamente!";
-        //    header("Location: ../View/profile.php");
         exit;
     }
 

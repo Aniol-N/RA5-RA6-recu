@@ -14,7 +14,7 @@ include "../Controller/EventController.php";
 </head>
 
 <body>
-<header>
+    <header>
         <ul id="navbar">
             <h1 id="logo">CFC</h1>
             <input type="checkbox" id="check">
@@ -62,7 +62,7 @@ include "../Controller/EventController.php";
         if (isset($_GET['id'])) {
             $eventController = new EventController();
             $event = $eventController->getEventById($_GET["id"]);
-            
+
             if (isset($event['title'])) {
                 echo '
                 <div class="event-header">
@@ -76,7 +76,7 @@ include "../Controller/EventController.php";
                 <div class="event-content">
                 <div class="event-media">
                     <div class="event-trailer">
-                    <iframe width="560" height="315" src="'.$event["trailerVideo"].'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="' . $event["trailerVideo"] . '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
           
@@ -87,6 +87,9 @@ include "../Controller/EventController.php";
                     <h2>Equipo</h2>
                     <p>' . nl2br(htmlspecialchars($event['crew'])) . '</p>
                     
+                    <h2>Box Office</h2>
+                    <p>' . nl2br(htmlspecialchars($event['boxOffice'])) . '</p>
+                                        
                     <button class="buy-ticket">Comprar entrada</button>
                 </div>
                 </div>';
