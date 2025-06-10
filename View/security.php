@@ -89,7 +89,7 @@ $redirect = $_SERVER["REQUEST_URI"];
                         unset($_SESSION["success"]);
                     }
                     echo '
-                    <form id="profile-form" method="POST" action="../Controller/UserController.php">
+                    <form id="profile-form" method="GET" action="../Controller/UserController.php">
                         <div class="form-group">
                             <label for="nombre">E-Mail:</label>
                             <input type="email" id="nombre" class="inputbox" name="email">

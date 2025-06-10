@@ -7,7 +7,7 @@ $events = [];
 $resultsCount = 0;
 $eventController = new EventController();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["read-filters"])) {
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["read-filters"])) {
 	$events = $eventController->read_filters();
 } else {
 	$events = $eventController->readAll();
@@ -119,7 +119,7 @@ $resultsCount = count($events);
 	<div id="events-container">
 		<div id="sidebar">
 			<h2>Preferencias</h2>
-			<form id="filters-form" action="./events.php" method="POST">
+			<form id="filters-form" action="./events.php" method="GET">
 				<div class="filter-group">
 					<label for="genero">Género</label>
 					<select id="genero" name="genre" class="inputbox">
@@ -141,13 +141,13 @@ $resultsCount = count($events);
 			<div id="adminUtils">
 				<button type="button" id="create" onclick="openPopup()">Add event</button>
 
-				<form id="updateEventForm" action="../Controller/EventController.php" method="POST" style="margin-top: 10px;">
+				<form id="updateEventForm" action="../Controller/EventController.php" method="GET" style="margin-top: 10px;">
 					<input type="hidden" name="updateEvent" value="1">
 					<!-- Agregar campo para eventId si es necesario -->
 					<button type="submit" id="update">Update event</button>
 				</form>
 
-				<form id="deleteEventForm" action="../Controller/EventController.php" method="POST" style="margin-top: 10px;">
+				<form id="deleteEventForm" action="../Controller/EventController.php" method="GET" style="margin-top: 10px;">
 					<input type="hidden" name="deleteEvent" value="1">
 					<!-- Agregar campo para eventId si es necesario -->
 					<button type="submit" id="delete">Delete event</button>
@@ -202,7 +202,7 @@ $resultsCount = count($events);
 				<h2>🎯 Crear Nuevo Evento</h2>
 			</div>
 
-			<form action="../Controller/EventController.php" method="POST">
+			<form action="../Controller/EventController.php" method="GET">
 				<input type="hidden" name="create" value="1">
 
 				<div class="form-group">

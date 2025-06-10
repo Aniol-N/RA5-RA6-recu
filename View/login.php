@@ -33,13 +33,13 @@ $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php'; // fallb
         }
         ?>
         <div id="rectangle">
-            <form action="../Controller/UserController.php" method="POST">
+            <form action="../Controller/UserController.php" method="GET">
                 <!-- CORREO ELECTRONICO -->
                 <label for="email">
                     <h2>Dirección de correo electrónico:</h2>
                 </label>
                 <div id="TextBox">
-                    <input class="inputbox" type="text" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                    <input class="inputbox" type="text" name="email" required value="<?php echo isset($_GET['email']) ? htmlspecialchars($_GET['email']) : ''; ?>">
                 </div>
 
                 <!-- PASSWORD -->
@@ -47,7 +47,7 @@ $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php'; // fallb
                     <h2>Contraseña:</h2>
                 </label>
                 <div id="TextBox">
-                    <input class="inputbox" type="password" name="password" required pattern="/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}$/g" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>" /><br>
+                    <input class="inputbox" type="password" name="password" required pattern="/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}$/g" value="<?php echo isset($_GET['password']) ? htmlspecialchars($_GET['password']) : ''; ?>" /><br>
                 </div>
 
                 <h3>
