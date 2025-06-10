@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-$redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php'; // fallback if get variable is not found
+$redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php';
 ?>
 
 <head>
@@ -25,21 +25,22 @@ $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php'; // fallb
         session_start();
         if (isset($_SESSION['error'])) {
             echo '<div id="alert">' . $_SESSION['error'] . '</div>';
-            unset($_SESSION['error']); // Eliminar el mensaje después de mostrarlo
+            unset($_SESSION['error']);
         }
         if (isset($_SESSION['info'])) {
             echo '<div id="alert">' . $_SESSION['info'] . '</div>';
             unset($_SESSION['info']);
         }
         ?>
+
         <div id="rectangle">
-            <form action="../Controller/UserController.php" method="GET">
+            <form action="../Controller/UserController.php" method="POST">
                 <!-- CORREO ELECTRONICO -->
                 <label for="email">
                     <h2>Dirección de correo electrónico:</h2>
                 </label>
                 <div id="TextBox">
-                    <input class="inputbox" type="text" name="email" required value="<?php echo isset($_GET['email']) ? htmlspecialchars($_GET['email']) : ''; ?>">
+                    <input class="inputbox" type="text" name="email" required value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
                 </div>
 
                 <!-- PASSWORD -->
@@ -47,7 +48,7 @@ $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php'; // fallb
                     <h2>Contraseña:</h2>
                 </label>
                 <div id="TextBox">
-                    <input class="inputbox" type="password" name="password" required pattern="/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}$/g" value="<?php echo isset($_GET['password']) ? htmlspecialchars($_GET['password']) : ''; ?>" /><br>
+                    <input class="inputbox" type="password" name="password" required pattern="/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}$/g" value="<?php echo isset($_POST['password']) ? htmlspecialchars($_POST['password']) : ''; ?>" /><br>
                 </div>
 
                 <h3>
