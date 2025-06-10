@@ -27,13 +27,6 @@ class UserController
 {
     private $conn;
 
-    private function logout(): void
-    {
-        session_unset();
-        session_destroy();
-        header("Location: ../View/login.php");
-        exit;
-    }
 
     public function __construct()
     {
@@ -152,7 +145,7 @@ class UserController
             exit;
         }
 
-        if ($confirmation != "QUIERO ELIMINAR MI PERFIL ".$user) {
+        if ($confirmation != "QUIERO ELIMINAR MI PERFIL " . $user) {
             $_SESSION["error"] = "Mensaje de confirmación introducido incorrectamente.";
             header("Location: ../View/security.php");
             exit;
@@ -292,6 +285,13 @@ class UserController
 
         $_SESSION["success"] = "Contraseña actualizada exitosamente.";
         header("Location: ../View/update_password.php");
+        exit;
+    }
+    public function logout(): void
+    {
+        session_unset();
+        session_destroy();
+        header("Location: ../View/login.php");
         exit;
     }
 }

@@ -24,7 +24,7 @@
                 unset($_SESSION['error']); // Eliminar el mensaje después de mostrarlo
             }
             ?>
-            <form action="../Controller/UserController.php" method="GET">
+            <form action="../Controller/UserController.php" method="POST">
                 <!-- NOMBRE DE USUARIO -->
                 <label for="usuario">
                     <h2>Nombre de usuario:</h2>
