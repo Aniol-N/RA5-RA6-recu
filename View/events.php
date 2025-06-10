@@ -141,13 +141,13 @@ $resultsCount = count($events);
 			<div id="adminUtils">
 				<button type="button" id="create" onclick="openPopup()">Add event</button>
 
-				<form id="updateEventForm" action="../Controller/EventController.php" method="GET" style="margin-top: 10px;">
+				<form id="updateEventForm" action="../Controller/EventController.php" method="POST" style="margin-top: 10px;">
 					<input type="hidden" name="updateEvent" value="1">
 					<!-- Agregar campo para eventId si es necesario -->
 					<button type="submit" id="update">Update event</button>
 				</form>
 
-				<form id="deleteEventForm" action="../Controller/EventController.php" method="GET" style="margin-top: 10px;">
+				<form id="deleteEventForm" action="../Controller/EventController.php" method="POST" style="margin-top: 10px;">
 					<input type="hidden" name="deleteEvent" value="1">
 					<!-- Agregar campo para eventId si es necesario -->
 					<button type="submit" id="delete">Delete event</button>
@@ -202,7 +202,7 @@ $resultsCount = count($events);
 				<h2>🎯 Crear Nuevo Evento</h2>
 			</div>
 
-			<form action="../Controller/EventController.php" method="GET">
+			<form action="../Controller/EventController.php" method="POST">
 				<input type="hidden" name="create" value="1">
 
 				<div class="form-group">

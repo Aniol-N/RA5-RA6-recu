@@ -8,28 +8,29 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $user->readAll();
     }
 
-    if (isset($_GET["delete"])) {
+    if (isset($_GET["read_filters"])) {
+        $user = new EventController();
+        echo "<p>Clicked filter button";
+        $user->read_filters();
+    }
+} elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    if (isset($_POST["delete"])) {
         $user = new EventController();
         echo "<p>Logout button is clicked.</p>";
         $user->delete();
     }
 
-    if (isset($_GET["create"])) {
+    if (isset($_POST["create"])) {
         $user = new EventController();
         echo "<p>create button is clicked.</p>";
         $user->create();
     }
-    
-    if (isset($_GET["update"])) {
+
+    if (isset($_POST["update"])) {
         $user = new EventController();
         echo "<p>update button is clicked.</p>";
         $user->update();
-    }
-
-    if (isset($_GET["read_filters"])) {
-        $user = new EventController();
-        echo "<p>Clicked filter button";
-        $user->read_filters();
     }
 }
 
@@ -54,12 +55,12 @@ class EventController
 
     public function create(): void
     {
-        $title = trim($_GET['title']);
-        $genre = trim($_GET['genre']);
-        $synopsis = trim($_GET['synopsis']);
-        $crew = trim($_GET['crew']);
-        $eventDate = trim($_GET['eventDate']);
-        $trailerVideo = trim($_GET['trailerVideo']);
+        $title = trim($_POST['title']);
+        $genre = trim($_POST['genre']);
+        $synopsis = trim($_POST['synopsis']);
+        $crew = trim($_POST['crew']);
+        $eventDate = trim($_POST['eventDate']);
+        $trailerVideo = trim($_POST['trailerVideo']);
 
         if (empty($title) || empty($eventDate)) {
             $_SESSION["error"] = "Datos inválidos.";
@@ -164,13 +165,13 @@ class EventController
 
     public function update(): void
     {
-        $id = trim($_GET['id']);
-        $newTitle = trim($_GET['title']);
-        $genre = trim($_GET['genre']);
-        $synopsis = trim($_GET['synopsis']);
-        $crew = trim($_GET['crew']);
-        $eventDate = trim($_GET['eventDate']);
-        $trailerVideo = trim($_GET['trailerVideo']);
+        $id = trim($_POST['id']);
+        $newTitle = trim($_POST['title']);
+        $genre = trim($_POST['genre']);
+        $synopsis = trim($_POST['synopsis']);
+        $crew = trim($_POST['crew']);
+        $eventDate = trim($_POST['eventDate']);
+        $trailerVideo = trim($_POST['trailerVideo']);
 
         if (empty($id) || empty($newTitle) || empty($eventDate)) {
             $_SESSION["error"] = "Datos inválidos.";
@@ -214,7 +215,7 @@ class EventController
 
     public function delete(): void
     {
-        $title = $_GET["title"];
+        $title = $_POST["title"];
 
         if (empty($title)) {
             $_SESSION["error"] = "Datos inválidos.";
@@ -241,8 +242,4 @@ class EventController
         header("Location: ../View/event.php");
         exit;
     }
-
-
-
-    
 }

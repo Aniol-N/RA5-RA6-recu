@@ -82,7 +82,7 @@ $resultsCount = count($events);
                 <div class="message" id="message"></div>
 
                 <!-- FORMULARIO SIMPLE - Se envía directamente al controlador -->
-                <form action="../Controller/EventController.php" method="GET">
+                <form action="../Controller/EventController.php" method="POST">
 
                     <div class="form-group">
                         <label for="title">📝 Título del Evento *</label>
