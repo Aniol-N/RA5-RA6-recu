@@ -85,7 +85,7 @@
                         unset($_SESSION["success"]);
                     }
                     echo '
-                    <form id="profile-form" method="POST" action="../Controller/UserController.php">
+                    <form id="profile-form" method="GET" action="../Controller/UserController.php">
                         <div class="form-group">
                             <label for="oldpassword">Contraseña actual:</label>
                             <input type="password" id="oldpassword" class="inputbox" name="oldpassword">

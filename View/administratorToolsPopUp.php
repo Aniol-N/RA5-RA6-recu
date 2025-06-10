@@ -75,14 +75,14 @@ $resultsCount = count($events);
             <div class="popup-header">
                 <h2>🎯 Crear Nuevo Evento</h2>
             </div>
-            <form action="../Controller/EventController.php" method="POST">
+            <form action="../Controller/EventController.php" method="GET">
                 <!-- Campo oculto para indicar la acción -->
                 <input type="hidden" name="create" value="1">
 
                 <div class="message" id="message"></div>
 
                 <!-- FORMULARIO SIMPLE - Se envía directamente al controlador -->
-                <form action="../Controller/EventController.php" method="POST">
+                <form action="../Controller/EventController.php" method="GET">
 
                     <div class="form-group">
                         <label for="title">📝 Título del Evento *</label>
