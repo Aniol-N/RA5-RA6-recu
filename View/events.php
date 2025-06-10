@@ -73,31 +73,31 @@ $resultsCount = count($events);
 
 <body>
 	<header>
-        <ul id="navbar">
-            <h1 id="logo">CFC</h1>
-            <input type="checkbox" id="check">
-            <label for="check" class="menubtn">
-                <i class="fas fa-bars"></i>
-            </label>
-            <div id="nav-left">
-                <a href="../index.php" id="home">Home</a>
-                <a href="#" id="events">Eventos</a>
-                <a href="./calendar.php" id="calendar">Calendario</a>
-                <a href="#" id="news">Noticias</a>
-                <a href="#" id="forums">Foros</a>
-            </div>
-            <input type="checkbox" id="showprofile">
-            <label for="showprofile" id="profilebtn" class="navbar-right">
-                <i class="fa-solid fa-user" style="font-size: 24px;"></i>
-            </label>
-            <div id="search-container">
-                <input type="text" placeholder="Search...">
-                <button type="submit"><i class="fa fa-search" style="color:white"></i></button>
-            </div>
-            <div id="user-info">
-                <h1 id="profile">Perfil</h1>
-                <?php if (isset($_SESSION["email"])) {
-                    echo '
+		<ul id="navbar">
+			<h1 id="logo">CFC</h1>
+			<input type="checkbox" id="check">
+			<label for="check" class="menubtn">
+				<i class="fas fa-bars"></i>
+			</label>
+			<div id="nav-left">
+				<a href="../index.php" id="home">Home</a>
+				<a href="#" id="events">Eventos</a>
+				<a href="./calendar.php" id="calendar">Calendario</a>
+				<a href="#" id="news">Noticias</a>
+				<a href="#" id="forums">Foros</a>
+			</div>
+			<input type="checkbox" id="showprofile">
+			<label for="showprofile" id="profilebtn" class="navbar-right">
+				<i class="fa-solid fa-user" style="font-size: 24px;"></i>
+			</label>
+			<div id="search-container">
+				<input type="text" placeholder="Search...">
+				<button type="submit"><i class="fa fa-search" style="color:white"></i></button>
+			</div>
+			<div id="user-info">
+				<h1 id="profile">Perfil</h1>
+				<?php if (isset($_SESSION["email"])) {
+					echo '
                     <h3 id="usr-email">' . $_SESSION['email'] . '</h3>
                     <img src="./files/img/usr_test.png" id="user-pfp">
                     <h1 id="usr-name">Bienvenido, ' . $_SESSION['username'] . '!</h1>
@@ -107,13 +107,13 @@ $resultsCount = count($events);
                     <a href="#"><button class="user-action" id="useraction2">Lorem ipsum</button></a>
                     <!--placeholders-->
                     <a href="../Controller/logout.php"><button class="user-action" id="logout">Cerrar sesión</button></a>';
-                } else {
-                    echo '<h1 id="not-logged">No has iniciado sesión</h1>
+				} else {
+					echo '<h1 id="not-logged">No has iniciado sesión</h1>
                     <a href="./login.php"><button class="user-action" id="login">Login</button></a>';
-                } ?>
-            </div>
-        </ul>
-    </header>
+				} ?>
+			</div>
+		</ul>
+	</header>
 
 	<!-- Contenido de eventos -->
 	<div id="events-container">
@@ -223,6 +223,11 @@ $resultsCount = count($events);
 				<div class="form-group">
 					<label for="crew">👥 Crew</label>
 					<input type="text" id="crew" name="crew" required placeholder="Ej: Soren Madsen">
+				</div>
+
+				<div class="form-group">
+					<label for="boxOffice">🧾 Box Office</label>
+					<input type="number" id="boxOffice" name="boxOffice" required placeholder="Only numbers">
 				</div>
 
 				<div class="form-group">

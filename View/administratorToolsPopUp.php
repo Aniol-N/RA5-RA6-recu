@@ -103,6 +103,10 @@ $resultsCount = count($events);
                         <label for="crew">👥 Crew</label>
                         <input type="text" id="crew" name="crew" required placeholder="Ej: Soren Madsen">
                     </div>
+                    <div class="form-group">
+                        <label for="boxOffice">🧾 Box Office</label>
+                        <input type="number" id="boxOffice" name="boxOffice" required placeholder="Only numbers">
+                    </div>
 
                     <div class="form-group">
                         <label for="eventDate">📅 Fecha del Evento</label>
