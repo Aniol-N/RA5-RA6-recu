@@ -62,6 +62,7 @@ class EventController
         $boxOffice = trim($_POST['boxOffice']);
         $eventDate = trim($_POST['eventDate']);
         $trailerVideo = trim($_POST['trailerVideo']);
+        $estado = trim(string: $_POST['estado']);
 
         if (empty($title) || empty($eventDate)) {
             $_SESSION["error"] = "Datos inválidos.";
@@ -80,8 +81,8 @@ class EventController
         }
 
         // Insertar nuevo evento
-        $createStmt = $this->conn->prepare("INSERT INTO events (title, genre, synopsis, crew, boxOffice, eventDate, trailerVideo) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        if (!$createStmt->execute([$title, $genre, $synopsis, $crew, $boxOffice, $eventDate, $trailerVideo])) {
+        $createStmt = $this->conn->prepare("INSERT INTO events (title, genre, synopsis, crew, boxOffice, eventDate, trailerVideo, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        if (!$createStmt->execute([$title, $genre, $synopsis, $crew, $boxOffice, $eventDate, $trailerVideo, $estado])) {
             $_SESSION["error"] = "Hubo un error en crear el evento, acude el equipo administrativo.";
             header("Location: ../View/event.php");
             exit;
@@ -166,6 +167,7 @@ class EventController
         $boxOffice = trim($_POST['boxOffice']);
         $eventDate = trim($_POST['eventDate']);
         $trailerVideo = trim($_POST['trailerVideo']);
+        $estado = trim($_POST['estado']);
 
         if (empty($id) || empty($newTitle) || empty($eventDate)) {
             $_SESSION["error"] = "Datos inválidos.";
@@ -173,14 +175,14 @@ class EventController
             exit;
         }
 
-        $updateStmt = $this->conn->prepare("UPDATE events SET title = ?, genre = ?, synopsis = ?, crew = ?, boxOffice = ?, eventDate = ?, trailerVideo = ? WHERE id = ?");
-        if (!$updateStmt->execute([$newTitle, $genre, $synopsis, $crew, $boxOffice, $eventDate, $trailerVideo, $_SESSION["id"]])) {
+        $updateStmt = $this->conn->prepare("UPDATE events SET title = ?, genre = ?, synopsis = ?, crew = ?, boxOffice = ?, eventDate = ?, trailerVideo = ?, estado = ? WHERE id = ?");
+        if (!$updateStmt->execute([$newTitle, $genre, $synopsis, $crew, $boxOffice, $eventDate, $trailerVideo, $estado, $_SESSION["id"]])) {
             $_SESSION["error"] = "Ha habido un error al actualizar el evento, contacte un administrador.";
             //    header("Location: ../View/event.php");
             exit;
         }
 
-        $readStmt = $this->conn->prepare("SELECT title, genre, synopsis, crew, boxOffice, eventDate, trailerVideo FROM events WHERE id = ?");
+        $readStmt = $this->conn->prepare("SELECT title, genre, synopsis, crew, boxOffice, eventDate, trailerVideo, estado FROM events WHERE id = ?");
 
         if (!$readStmt->execute([$_SESSION["id"]])) {
             $_SESSION["error"] = "Error en la consulta";
@@ -203,6 +205,7 @@ class EventController
         $_SESSION["boxOffice"] = $boxOffice["boxOffice"];
         $_SESSION["eventDate"] = $event["eventDate"];
         $_SESSION["trailerVideo"] = $event["trailerVideo"];
+        $_SESSION["estado"] = $event["estado"];
         $_SESSION["success"] = "Evento actualizado correctamente!";
         exit;
     }

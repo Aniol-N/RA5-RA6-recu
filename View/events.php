@@ -240,6 +240,11 @@ $resultsCount = count($events);
 					<input type="url" id="trailerVideo" name="trailerVideo" placeholder="https://youtube.com/watch?v=...">
 				</div>
 
+				<div class="form-group">
+					<label for="trailerVideo">Estado</label>
+					<input type="text" id="estado" name="estado">
+				</div>
+
 				<div class="form-actions">
 					<button type="submit" class="btn btn-primary">✨ Crear Evento</button>
 					<button type="button" class="btn btn-secondary" onclick="closePopup()">❌ Cancelar</button>

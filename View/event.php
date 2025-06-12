@@ -89,7 +89,10 @@ include "../Controller/EventController.php";
                     
                     <h2>Box Office</h2>
                     <p>' . nl2br(htmlspecialchars($event['boxOffice'])) . '</p>
-                                        
+                               
+                    <h2>Estado</h2>
+                    <p>' . nl2br(htmlspecialchars($event['estado'])) . '</p>
+                           
                     <button class="buy-ticket">Comprar entrada</button>
                 </div>
                 </div>';
