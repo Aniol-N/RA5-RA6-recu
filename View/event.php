@@ -79,7 +79,7 @@ include "../Controller/EventController.php";
                     <iframe width="560" height="315" src="' . $event["trailerVideo"] . '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
-          
+           
                 <div class="event-info">
                     <h2>Sinopsis</h2>
                     <p>' . nl2br(htmlspecialchars($event['synopsis'])) . '</p>

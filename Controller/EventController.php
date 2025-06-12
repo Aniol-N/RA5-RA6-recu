@@ -69,6 +69,7 @@ class EventController
             header("Location: ../View/event.php");
             exit;
         }
+ 
 
         $checkStmt = $this->conn->prepare("SELECT title FROM events WHERE title = ?");
         $checkStmt->execute([$title]);

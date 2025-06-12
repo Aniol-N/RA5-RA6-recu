@@ -159,7 +159,7 @@ $resultsCount = count($events);
 			<div id="events-header">
 				<h1>EVENTOS</h1>
 				<div id="results-count">Mostrando <?php echo $resultsCount; ?> resultados</div>
-			</div>
+			</div> 
 
 			<div id="events-grid">
 				<?php if (!empty($events)): ?>

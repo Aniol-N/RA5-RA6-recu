@@ -67,7 +67,7 @@ $resultsCount = count($events);
 
     <!-- Popup Overlay -->
     <button onclick="openPopup()">➕ Crear Evento</button>
-
+ 
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup">
             <button type="button" class="close-btn" onclick="closePopup()">&times;</button>
